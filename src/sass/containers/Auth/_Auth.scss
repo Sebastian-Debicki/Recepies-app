@@ -1,0 +1,40 @@
+.auth {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: $color-grey-light-2;
+
+  &__box {
+    position: absolute;
+    @include centerVaH(45%);
+    text-align: center;
+    width: 70%;
+
+    @include respond(phone) {
+      width: 55%;
+    }
+
+    @include respond(tab-port) {
+      width: 50%;
+    }
+
+    @include respond(tab-land) {
+      width: 40%;
+    }
+
+    @include respond(desktop) {
+      width: 30%;
+    }
+
+    @include respond(big-desktop) {
+      width: 25%;
+    }
+  }
+
+  &__error-message {
+    font-size: 1.5rem;
+    color: $color-error;
+    padding-bottom: 2rem;
+  }
+
+}

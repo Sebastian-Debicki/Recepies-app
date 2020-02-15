@@ -1,0 +1,59 @@
+.btn {
+  border: none;
+  text-transform: uppercase;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  font-size: $default-font-size;
+
+  // BUTTON SECONDARY
+  &__secondary {
+    display: inline-block;
+    padding: 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+    transition: all .4s;
+    border: 5px solid $color-primary;
+    letter-spacing: .5rem;
+    border-radius: $border-radius-small;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 1.5rem 3rem rgba($color-black, .15);
+      color: $color-white;
+    }
+
+    &:active {
+      transform: translateY(-1px);
+      box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: $color-primary;
+      z-index: -1;
+      transform: translateX(-15.5rem);
+      transition: all .6s cubic-bezier(.78, 1.85, .6, .63);
+    }
+
+    &:hover::after {
+      transform: translateX(0);
+    }
+  }
+
+  // BUTTON SWITCHER
+  &--switcher {
+    padding: 2rem 4rem;
+    width: 100%;
+    letter-spacing: .1rem;
+    border: 6px solid $color-primary-dark;
+    border-radius: $border-radius-small;
+  }
+}
