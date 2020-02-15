@@ -1,0 +1,48 @@
+.input-box {
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: 3.5rem;
+  }
+}
+
+.input {
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  border: none;
+  padding: 1.5rem;
+  border-bottom: 3px solid transparent;
+  border-radius: $border-radius-small;
+  font-size: $default-font-size;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 1.5rem 2rem rgba($color-black, .1);
+    border-bottom: 3px solid $color-success;
+  }
+
+  &:focus:invalid {
+    border-bottom: 3px solid $color-error;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $color-grey-dark-2;
+  }
+
+  &__label {
+    font-size: 1.3rem;
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    transition: all .4s;
+    transform: translateY(-2.4rem);
+  }
+
+  &:placeholder-shown+&__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0rem);
+  }
+
+}

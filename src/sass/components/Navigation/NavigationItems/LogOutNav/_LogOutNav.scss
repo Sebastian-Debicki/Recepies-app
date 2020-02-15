@@ -1,0 +1,12 @@
+.navigation--logout {
+  position: fixed;
+  top: 3rem;
+  left: 3rem;
+  z-index: 1000;
+
+  &__list {
+    display: flex;
+    list-style: none;
+  }
+
+}
