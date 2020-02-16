@@ -1,8 +1,8 @@
 .navigation--login {
-  width: 20rem;
+  width: $nav-width;
   height: 100vh;
   background-color: $color-primary;
-  // position: absolute;
+  position: absolute;
   @include clearfix;
   float: left;
 

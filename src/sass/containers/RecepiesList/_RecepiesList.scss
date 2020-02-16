@@ -1,4 +1,22 @@
 .recepies-list {
   background-color: $color-grey-light-2;
   height: 100vh;
+
+  &__box {
+    position: absolute;
+    left: 6rem;
+    transition: .5s ease-in-out;
+
+    &.open {
+      transform: translateX(0);
+
+      @include respond(tab-port) {
+        transform: translateX($nav-translateX);
+      }
+    }
+  }
+}
+
+.layout {
+  position: relative;
 }

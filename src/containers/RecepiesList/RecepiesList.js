@@ -1,11 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const RecepiesList = () => {
+const RecepiesList = (props) => {
   return (
     <div className="recepies-list">
-      Recepies list!!!!
+      <div className={props.open ? "recepies-list__box open" : "recepies-list__box"}>
+        Recepies list!!!!
+      </div>
     </div>
   );
 }
 
-export default RecepiesList;
+const mapStateToProps = state => {
+  return {
+    open: state.open.open
+  }
+}
+
+export default connect(mapStateToProps)(RecepiesList);

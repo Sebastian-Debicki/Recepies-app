@@ -1,6 +1,6 @@
 @keyframes openNavigation {
   0% {
-    transform: translateX(-15rem);
+    transform: translateX(-$nav-translateX);
   }
 
   100% {
@@ -14,6 +14,6 @@
   }
 
   100% {
-    transform: translateX(-15rem);
+    transform: translateX(-$nav-translateX);
   }
 }

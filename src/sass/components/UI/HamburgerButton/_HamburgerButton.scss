@@ -14,7 +14,7 @@
   box-shadow: 0 1.5rem 3rem rgba($color-black, .3);
 
   &.open {
-    transform: translateX(15rem);
+    transform: translateX($nav-translateX);
   }
 
   &__box {
@@ -40,7 +40,7 @@
     height: 3px;
     border-radius: 2px;
     background-color: white;
-    transition: all .4s .4s;
+    transition: all .3s .4s;
     transform: rotate(0);
 
 
