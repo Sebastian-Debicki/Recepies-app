@@ -32,4 +32,26 @@
       transform: translateX(0);
     }
   }
+
+  &--login {
+    display: block;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    transition: .3s;
+    color: $color-grey-dark-1;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid black;
+    }
+
+    &:hover {
+      color: $color-grey-light-2;
+    }
+
+    &.active {
+      color: $color-grey-light-2;
+    }
+  }
 }

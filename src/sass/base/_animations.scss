@@ -1,0 +1,19 @@
+@keyframes openNavigation {
+  0% {
+    transform: translateX(-$nav-translateX);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes closeNavigation {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-$nav-translateX);
+  }
+}

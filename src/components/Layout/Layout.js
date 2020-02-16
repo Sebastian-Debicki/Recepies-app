@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 import NavigationItems from '../Navigation/NavigationItems/NavigationItems';
 import Spinner from '../UI/Spinner/Spinner';
+import HamburgerButton from '../UI/HamburgerButton/HamburgerButton';
 
 const Layout = (props) => {
 
@@ -9,7 +11,8 @@ const Layout = (props) => {
   if (!props.loading) {
     layout =
       <div className="layout">
-        <NavigationItems isAuth={props.isAuth} />
+        <NavigationItems isAuth={props.isAuth} open={props.open} />
+        {props.isAuth && <HamburgerButton clicked={props.navToggler} open={props.open} />}
         <main>
           {props.children}
         </main>
@@ -26,8 +29,15 @@ const Layout = (props) => {
 const mapStateToProps = state => {
   return {
     isAuth: state.auth.token !== null,
-    loading: state.auth.loading
+    loading: state.auth.loading,
+    open: state.open.open
   }
 }
 
-export default connect(mapStateToProps)(Layout);
+const mapDispatchToProps = dispatch => {
+  return {
+    navToggler: () => { dispatch(actions.navToggler()) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

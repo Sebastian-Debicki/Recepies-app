@@ -5,6 +5,14 @@
   transform: translate(-50%, -50%);
 }
 
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
 // MEDIA
 // phone - 600px - 37.5em
 // tab-port -  900px - 56.25em
