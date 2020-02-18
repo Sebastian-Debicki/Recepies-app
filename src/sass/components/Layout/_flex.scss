@@ -1,0 +1,13 @@
+.flex {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.col-1-of-2 {
+  flex-basis: 100%;
+
+  @include respond(tab-land) {
+    flex-basis: 50%
+  }
+}

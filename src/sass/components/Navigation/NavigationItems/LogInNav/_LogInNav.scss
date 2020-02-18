@@ -2,9 +2,10 @@
   width: $nav-width;
   height: 100vh;
   background-color: $color-primary;
-  position: absolute;
+  position: fixed;
   @include clearfix;
   float: left;
+  z-index: 999;
 
   &--open {
     animation: openNavigation .5s ease-in-out forwards;

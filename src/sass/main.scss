@@ -11,11 +11,16 @@
 @import './components/Navigation/NavigationItems/NavigationItems';
 @import './components/Navigation/NavigationItems/LogOutNav/LogOutNav';
 @import './components/Navigation/NavigationItems/LogInNav/LogInNav';
+@import './components/AddRecepie/AddRecepie';
+@import './components/Layout/Layout';
+@import './components/Layout/flex';
 @import './components/UI/Link/Link';
 @import './components/UI/Input/Input';
 @import './components/UI/Button/Button';
 @import './components/UI/Spinner/Spinner';
 @import './components/UI/HamburgerButton/HamburgerButton';
+@import './components/UI/Modal/Modal';
+@import './components/UI/AddRecepieButton/AddRecepieButton';
 
 @import './containers/Auth/Auth';
 @import './containers/Home/Home';

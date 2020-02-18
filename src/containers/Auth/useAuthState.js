@@ -4,10 +4,12 @@ export const useAuthState = () => {
   const [controlsState, setControlsState] = React.useState({
     controls: {
       email: {
+        name: "Email",
         value: '',
         required: true
       },
       password: {
+        name: 'Password',
         value: '',
         required: true,
         validation: {
