@@ -13,7 +13,6 @@ class RecepiePage extends Component {
     editName: false,
     editDescription: false,
     editIngredients: false,
-    editPreparation: false,
     editCalories: false,
   }
   componentDidMount() {
@@ -27,68 +26,40 @@ class RecepiePage extends Component {
     return recepie
   }
 
-  changeRecepieCalories = (e) => {
-    const recepie = this.getRecepie()
-    const currentDate = moment().format("DD.MM.YY HH:mm:ss");
-    recepie.modificationDate = currentDate;
-    recepie.calories = e.target.value;
-    if (e.target.value >= 0 && e.target.value <= 9998) {
-      this.setState({ recepie })
-      this.props.changeRecepieValues(this.state.recepie)
-    }
-  }
-  changeRecepieName = (e) => {
-    const recepie = this.getRecepie()
-    const currentDate = moment().format("DD.MM.YY HH:mm:ss");
-    recepie.modificationDate = currentDate;
-    recepie.name = e.target.value;
-    this.setState({ recepie })
-    this.props.changeRecepieValues(this.state.recepie)
-  }
-  changeRecepieDescription = (e) => {
-    const recepie = this.getRecepie()
-    const currentDate = moment().format("DD.MM.YY HH:mm:ss");
-    recepie.modificationDate = currentDate;
-    recepie.description = e.target.value;
-    this.setState({ recepie })
-    this.props.changeRecepieValues(this.state.recepie)
-  }
-  changeRecepiePreparation = (e) => {
-    const recepie = this.getRecepie()
-    const currentDate = moment().format("DD.MM.YY HH:mm:ss");
-    recepie.modificationDate = currentDate;
-    recepie.preparation = e.target.value;
-    this.setState({ recepie })
-    this.props.changeRecepieValues(this.state.recepie)
-  }
-  addIngredientHandler = (e) => {
-    e.preventDefault();
-    const id = uuid()
-    const ingredientName = e.target.Ingredient.value;
-    const recepie = this.getRecepie();
-    const currentDate = moment().format("DD.MM.YY HH:mm:ss");
-    recepie.modificationDate = currentDate;
-    recepie.ingredients.push({ id, name: ingredientName })
-    this.setState({ recepie })
-    this.props.changeRecepieValues(recepie)
-    e.target.Ingredient.value = '';
-  }
-  deleteIngredientHandler = (id) => {
-    const recepie = this.getRecepie();
-    const currentDate = moment().format("DD.MM.YY HH:mm:ss");
-    recepie.modificationDate = currentDate;
-    const index = recepie.ingredients.findIndex(ing => ing.id === id)
-    recepie.ingredients.splice(index, 1);
-    this.setState({ recepie })
-    this.props.changeRecepieValues(recepie)
+  editRecepieHandler = (type) => {
+    if (type === 'name') this.setState({ editName: !this.state.editName, editDescription: false, editIngredients: false, editCalories: false })
+    if (type === 'description') this.setState({ editDescription: !this.state.editDescription, editName: false, editIngredients: false, editCalories: false })
+    if (type === 'ingredients') this.setState({ editIngredients: !this.state.editIngredients, editDescription: false, editName: false, editCalories: false })
+    if (type === 'calories') this.setState({ editCalories: !this.state.editCalories, editDescription: false, editIngredients: false, editName: false })
   }
 
-  editRecepieHandler = (type) => {
-    if (type === 'name') this.setState({ editName: !this.state.editName, editDescription: false, editIngredients: false, editPreparation: false, editCalories: false })
-    if (type === 'description') this.setState({ editDescription: !this.state.editDescription, editName: false, editIngredients: false, editPreparation: false, editCalories: false })
-    if (type === 'ingredients') this.setState({ editIngredients: !this.state.editIngredients, editDescription: false, editName: false, editPreparation: false, editCalories: false })
-    if (type === 'preparation') this.setState({ editPreparation: !this.state.editPreparation, editDescription: false, editIngredients: false, editName: false, editCalories: false })
-    if (type === 'calories') this.setState({ editCalories: !this.state.editCalories, editPreparation: false, editDescription: false, editIngredients: false, editName: false })
+  changeRecepieValue = (e, type, ingId) => {
+    e.preventDefault()
+    const recepie = this.getRecepie();
+    const currentDate = moment().format("DD.MM.YY HH:mm:ss");
+    recepie.modificationDate = currentDate;
+    switch (type) {
+      case 'calories': if (e.target.value >= 0 && e.target.value <= 9998) recepie.calories = e.target.value;
+        break;
+      case 'name': recepie.name = e.target.value;
+        break;
+      case 'description': recepie.description = e.target.value;
+        break;
+      case 'preparation': recepie.preparation = e.target.value;
+        break;
+      case 'addIngredient':
+        const id = uuid()
+        recepie.ingredients.push({ id, name: e.target.Ingredient.value })
+        e.target.Ingredient.value = '';
+        break;
+      case 'deleteIngredient':
+        const index = recepie.ingredients.findIndex(ing => ing.id === ingId)
+        recepie.ingredients.splice(index, 1);
+        break
+      default: return recepie
+    }
+    this.setState({ recepie })
+    this.props.changeRecepieValues(this.state.recepie)
   }
 
   render() {
@@ -97,61 +68,59 @@ class RecepiePage extends Component {
     if (!recepie) content = <Spinner />
     else {
       content = (
-        <div className="recepie" >
+        <div className="recepie-page" >
           <div className={this.props.open ? 'include-menu-box open' : 'include-menu-box'}>
-            <h2 className="heading-secondary">Recepie</h2>
-            <div className="recepie__box">
-              <div className="recepie__edit-box">
-                <div className="recepie__backdrop" onClick={() => this.editRecepieHandler('calories')}></div>
-                <h3 className="recepie__heading">Calories <Button class="btn btn--edit">Edit</Button></h3>
+            <div className="heading-box u-margin-bottom-small u-heading-margin-top">
+              <h2 className="heading-secondary">Recepie</h2>
+            </div>
+            <div className="recepie-page__box">
+              <div className="recepie-page__edit-box">
+                <div className="recepie-page__backdrop" onClick={() => this.editRecepieHandler('calories')}></div>
+                <h3 className="heading-quaternary">Calories <Button class="btn btn--edit">Edit</Button></h3>
                 {this.state.editCalories ?
-                  <Input class="input recepie__input--calories" type="number" min={0} value={recepie.calories} changed={this.changeRecepieCalories} /> :
-                  <p className="recepie__description">{recepie.calories}</p>}
+                  <Input class="input input--calories" type="number" min={0} value={recepie.calories} changed={(e) => this.changeRecepieValue(e, 'calories')} /> :
+                  <p className="recepie-page__text">{recepie.calories}</p>}
               </div>
-              <div className="recepie__edit-box">
-                <div className="recepie__backdrop" onClick={() => this.editRecepieHandler('name')}></div>
-                <h3 className="recepie__heading">Name <Button class="btn btn--edit">Edit</Button></h3>
+              <div className="recepie-page__edit-box">
+                <div className="recepie-page__backdrop" onClick={() => this.editRecepieHandler('name')}></div>
+                <h3 className="heading-quaternary">Name <Button class="btn btn--edit">Edit</Button></h3>
                 {this.state.editName ?
-                  <Input class="recepie__input recepie__input--name" value={recepie.name} changed={this.changeRecepieName} /> :
-                  <p className="recepie__name">{recepie.name}</p>}
+                  <Input class="input" value={recepie.name} changed={(e) => this.changeRecepieValue(e, 'name')} /> :
+                  <p className="recepie-page__name">{recepie.name}</p>}
               </div>
-              <div className="recepie__edit-box">
-                <div className="recepie__backdrop" onClick={() => this.editRecepieHandler('description')}></div>
-                <h3 className="recepie__heading">Description <Button class="btn btn--edit">Edit</Button></h3>
+              <div className="recepie-page__edit-box">
+                <div className="recepie-page__backdrop" onClick={() => this.editRecepieHandler('description')}></div>
+                <h3 className="heading-quaternary">Description <Button class="btn btn--edit">Edit</Button></h3>
                 {this.state.editDescription ?
-                  <Input class="recepie__input recepie__input--description" value={recepie.description} changed={this.changeRecepieDescription} /> :
-                  <p className="recepie__description">{recepie.description}</p>}
+                  <Input class="input" value={recepie.description} changed={(e) => this.changeRecepieValue(e, 'description')} /> :
+                  <p className="recepie-page__text">{recepie.description}</p>}
               </div>
-              <div className="recepie__edit-box">
-                <div className="recepie__backdrop" onClick={() => this.editRecepieHandler('ingredients')}></div>
-                <h3 className="recepie__heading">Ingredients <Button class="btn btn--edit">Edit</Button></h3>
+              <div className="recepie-page__edit-box">
+                <div className="recepie-page__backdrop" onClick={() => this.editRecepieHandler('ingredients')}></div>
+                <h3 className="heading-quaternary">Ingredients <Button class="btn btn--edit">Edit</Button></h3>
                 {this.state.editIngredients &&
-                  <form className="recepie__ingredients-form" onSubmit={this.addIngredientHandler}>
+                  <form className="recepie-page__ingredients-form" onSubmit={(e) => this.changeRecepieValue(e, 'addIngredient')}>
                     <Input class="input input--add-recepie" name="Ingredient" required={true} />
                     <Button class="btn btn--add-ingredient">Add</Button>
                   </form>}
-                <ul className="recepie__ingredients-list">
+                <ul className="recepie-page__ingredients-list">
                   {recepie.ingredients.map(ing => ing.name &&
-                    <li key={ing.id} className="recepie__ingredients-list__ingredient">
+                    <li key={ing.id} className="recepie-page__ingredients-list__ingredient">
                       {this.state.editIngredients &&
-                        <Button class="btn" clicked={() => this.deleteIngredientHandler(ing.id)}><span className="recepie__delete-icon far fa-trash-alt"></span></Button>}
+                        <Button class="btn" clicked={(e) => this.changeRecepieValue(e, 'deleteIngredient', ing.id)}><span className="recepie-page__delete-icon far fa-trash-alt"></span></Button>}
                       {ing.name}
                     </li>)}
                 </ul>
               </div>
-              <div className="recepie__edit-box">
-                <div className="recepie__backdrop" onClick={() => this.editRecepieHandler('preparation')}></div>
-                <h3 className="recepie__heading">Preparation <Button class="btn btn--edit">Edit</Button></h3>
-                {this.state.editPreparation ?
-                  <div className="input-box">
-                    <textarea
-                      className="input input--textarea"
-                      placeholder="Preparation"
-                      onChange={this.changeRecepiePreparation}
-                      value={recepie.preparation}
-                    ></textarea>
-                  </div> :
-                  <p className="recepie__preparation">{recepie.preparation}</p>}
+              <div className="recepie-page__edit-box">
+                <h3 className="heading-quaternary">Preparation <Button class="btn btn--edit">Edit</Button></h3>
+                <div className="input-box">
+                  <textarea
+                    className="input input--textarea"
+                    onChange={(e) => this.changeRecepieValue(e, 'preparation')}
+                    value={recepie.preparation}
+                  ></textarea>
+                </div>
               </div>
             </div>
           </div>

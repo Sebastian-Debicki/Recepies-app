@@ -17,3 +17,11 @@
 .u-margin-top-big {
   margin-top: 5rem !important;
 }
+
+.u-heading-margin-top {
+  margin-top: 10rem;
+
+  @include respond(tab-port) {
+    margin-top: 2.5rem;
+  }
+}

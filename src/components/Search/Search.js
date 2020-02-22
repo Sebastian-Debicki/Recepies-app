@@ -6,7 +6,7 @@ const Search = (props) => {
   return (
     <div className="recepies-list__search">
       <Input
-        class="input"
+        class="input u-margin-bottom-small"
         type="text"
         name="Search by name"
         changed={props.searchInputHandler}
