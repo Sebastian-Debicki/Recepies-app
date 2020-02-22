@@ -43,7 +43,7 @@ class RecepiesList extends Component {
     const filteredAndSortedRecepies = sortedRecepies.filter(recepie => recepie.name.toLowerCase().includes(this.state.searchValue.toLocaleLowerCase()))
     let title, recepiesList;
     if (this.props.match.path === '/recepies-list') {
-      title = 'LIST';
+      title = 'List of recepies';
       recepiesList = filteredAndSortedRecepies
     };
     if (this.props.match.path === '/favorites') {
@@ -62,7 +62,9 @@ class RecepiesList extends Component {
     return (
       <div className="recepies-list">
         <div className={this.props.open ? "include-menu-box open" : "include-menu-box"}>
-          <h2 className="heading-secondary u-margin-bottom-big">{title}</h2>
+          <div className="heading-box u-heading-margin-top u-margin-bottom-small">
+            <h2 className="heading-secondary">{title}</h2>
+          </div>
           <Search
             searchInputHandler={this.searchInputHandler}
             searchValue={this.state.searchValue}

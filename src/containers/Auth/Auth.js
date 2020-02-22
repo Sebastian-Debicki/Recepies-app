@@ -25,7 +25,7 @@ const Auth = (props) => {
 
   const form = controlsStateArr.map(formEl =>
     <Input
-      class="input"
+      class="input u-margin-bottom-small"
       key={formEl.id}
       value={formEl.config.value}
       required={formEl.config.required}
@@ -40,7 +40,9 @@ const Auth = (props) => {
     <div className="auth">
       {props.isAuth && <Redirect to="/recepies-list" />}
       <div className="auth__box">
-        <h2 className="heading-secondary u-margin-bottom-small u-center">{switchAuthTypeState ? 'Sign Up' : 'Sign In'}</h2>
+        <div className="heading-box u-margin-bottom-small">
+          <h2 className="heading-secondary">{switchAuthTypeState ? 'Sign Up' : 'Sign In'}</h2>
+        </div>
         {props.error && <p className="auth__error-message">{props.error.message}</p>}
         <form className="auth__form" onSubmit={formSubmitHandler}>
           {form}

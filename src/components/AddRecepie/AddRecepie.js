@@ -34,10 +34,12 @@ const AddRecepie = (props) => {
 
   return (
     <div className="add-recepie">
-      <h2 className="heading-secondary u-margin-bottom-small u-center">Add Recepie</h2>
+      <div className="heading-box u-margin-bottom-big u-margin-top-small">
+        <h2 className="heading-secondary">Add Recepie</h2>
+      </div>
       <form className="add-recepie__form" onSubmit={addRecepieHandler}>
         <Input
-          class="input"
+          class="input u-margin-bottom-big"
           type="text"
           required={true}
           name="Recepie name"
@@ -45,7 +47,7 @@ const AddRecepie = (props) => {
           value={nameRecepieState}
         />
         <Input
-          class="input"
+          class="input u-margin-bottom-big"
           type="text"
           required={true}
           name="Short description"

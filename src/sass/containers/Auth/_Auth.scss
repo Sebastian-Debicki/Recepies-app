@@ -6,11 +6,12 @@
 
   &__box {
     position: absolute;
-    @include centerVaH(45%);
+    @include centerVaH(50%);
     text-align: center;
     width: 70%;
 
     @include respond(phone) {
+      @include centerVaH(45%);
       width: 55%;
     }
 
