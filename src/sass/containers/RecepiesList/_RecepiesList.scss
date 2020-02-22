@@ -5,57 +5,15 @@
 
   &__list {
     list-style: none;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    position: relative;
   }
 
-
-  &__recepie {
-    flex-basis: 100%;
-    background-color: $color-grey-dark-3;
-    padding: 1rem 2rem;
-    border-radius: $border-radius-small;
-    transition: all .2s;
+  &__search {
     position: relative;
-    color: $color-grey-light-1;
+    padding-bottom: 9rem;
 
-    &:hover {
-      background-color: lighten($color-grey-dark-3, 8%);
+    @include respond(phone) {
+      padding-bottom: 5rem;
     }
-
-    &:not(:last-child) {
-      border-bottom: 1px solid $color-grey-light-1;
-    }
-
-    &__link {
-      font-size: $default-font-size;
-      text-decoration: none;
-      display: block;
-      color: $color-grey-light-1;
-    }
-
-    &__calories {
-      font-size: 1.3rem;
-    }
-
-    &__icon {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-      opacity: 1;
-      transition: all .2s;
-
-      @include respond(phone) {
-        opacity: 0;
-      }
-    }
-
-    &:hover &__icon {
-      opacity: 1;
-    }
-
   }
 }

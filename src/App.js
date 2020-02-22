@@ -8,7 +8,7 @@ import Auth from './containers/Auth/Auth';
 import firebase from 'firebase';
 import Logout from './containers/Auth/Logout/Logout';
 import RecepiesList from './containers/RecepiesList/RecepiesList';
-import Recepie from './containers/RecepiesList/Recepie/Recepie';
+import RecepiePage from './containers/RecepiePage/RecepiePage';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBlJ0x4RZjgSsDawoyWN5UDKiqh6Jm9jLA",
@@ -38,7 +38,8 @@ class App extends Component {
           <Route path="/auth" component={Auth} />
           <Route path="/logout" component={Logout} />
           <Route path="/recepies-list" exact component={RecepiesList} />
-          <Route path="/recepies-list/:id" component={Recepie} />
+          <Route path="/favorites" exact component={RecepiesList} />
+          <Route path="/recepies-list/:id" component={RecepiePage} />
         </Layout>
       </>
     );

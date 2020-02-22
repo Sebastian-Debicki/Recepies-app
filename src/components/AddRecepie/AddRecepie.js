@@ -3,6 +3,7 @@ import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import moment from 'moment';
 
 const AddRecepie = (props) => {
   const [nameRecepieState, setNameRecepieState] = React.useState('');
@@ -12,13 +13,18 @@ const AddRecepie = (props) => {
   const changeRecepieDescriptionHandler = (e) => setDescriptionRecepieState(e.target.value);
 
   const addRecepieHandler = (e) => {
+    const currentDate = moment().format("DD.MM.YY HH:mm:ss");
     e.preventDefault();
     const recepie = {
       name: nameRecepieState,
       description: descriptionRecepieState,
-      calories: null,
-      ingredients: [],
-      userId: props.userId
+      preparation: '',
+      calories: 0,
+      ingredients: [{ id: 1, name: '' }],
+      userId: props.userId,
+      addedDate: currentDate,
+      modificationDate: currentDate,
+      favorite: false,
     }
     props.saveRecepie(recepie, props.token)
     setNameRecepieState('');
@@ -38,17 +44,14 @@ const AddRecepie = (props) => {
           changed={changeRecepieNameHandler}
           value={nameRecepieState}
         />
-        <div className="input-box">
-          <textarea
-            className="input input--textarea"
-            placeholder="Short description..."
-            id="description"
-            onChange={changeRecepieDescriptionHandler}
-            value={descriptionRecepieState}
-          ></textarea>
-          <label className="input__label" htmlFor='description'>Description...</label>
-        </div>
-
+        <Input
+          class="input"
+          type="text"
+          required={true}
+          name="Short description"
+          changed={changeRecepieDescriptionHandler}
+          value={descriptionRecepieState}
+        />
         <Button class="btn btn__primary">SUBMIT</Button>
       </form>
     </div>

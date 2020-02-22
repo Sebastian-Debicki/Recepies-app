@@ -21,7 +21,10 @@
 @import './components/UI/HamburgerButton/HamburgerButton';
 @import './components/UI/Modal/Modal';
 @import './components/UI/AddRecepieButton/AddRecepieButton';
+@import './components/UI/Select/Select';
 
 @import './containers/Auth/Auth';
 @import './containers/Home/Home';
 @import './containers/RecepiesList/RecepiesList';
+@import './containers/RecepiesList/Recepie/Recepie';
+@import './containers/RecepiePage/RecepiePage';

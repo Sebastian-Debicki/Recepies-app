@@ -1,9 +1,5 @@
 .input-box {
   position: relative;
-
-  &:not(:last-child) {
-    margin-bottom: 3.5rem;
-  }
 }
 
 .input {
@@ -15,6 +11,10 @@
   border-bottom: 3px solid transparent;
   border-radius: $border-radius-small;
   font-size: $default-font-size;
+
+  &:not(:last-child) {
+    margin-bottom: 3.5rem;
+  }
 
   &:focus {
     outline: none;
@@ -48,6 +48,15 @@
   &--textarea {
     height: 15rem;
     font-family: inherit;
+    position: relative;
+    z-index: 1;
+    margin-top: 1.5rem;
+  }
+
+  &--add-recepie {
+    margin-bottom: 0 !important;
+    margin-left: 1rem;
+    flex-basis: 1;
   }
 
 }

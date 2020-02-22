@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
+import firebase from 'firebase';
 
 export const saveRecepieSuccess = (id, recepie) => {
   return {
@@ -23,6 +24,28 @@ export const saveRecepie = (recepie, token) => {
         dispatch(saveRecepieSuccess(response.data.name, recepie))
       })
       .catch(err => dispatch(saveRecepieFail(err)))
+  }
+}
+
+export const changeRecepieValues = (recepie) => {
+  return dispatch => {
+    firebase.database().ref('recepies/' + recepie.id).set({
+      ...recepie
+    })
+  }
+}
+
+export const removeRecepieSuccess = (id) => {
+  return {
+    type: actionTypes.REMOVE_RECEPIE_SUCCESS,
+    id
+  }
+}
+
+export const removeRecepie = (id) => {
+  return dispatch => {
+    firebase.database().ref('recepies/' + id).remove()
+    dispatch(removeRecepieSuccess(id))
   }
 }
 

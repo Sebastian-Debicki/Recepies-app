@@ -56,4 +56,39 @@
     border: 6px solid $color-primary-dark;
     border-radius: $border-radius-small;
   }
+
+  // BUTTON EDIT
+  &--edit {
+    color: $color-primary-dark;
+    text-transform: capitalize;
+    font-weight: 300;
+    transition: .3s;
+    opacity: 1;
+    margin-left: 1rem;
+
+    @include respond(tab-port) {
+      opacity: 0;
+    }
+  }
+
+  // BUTTON ADD INGREDIENT
+  &--add-ingredient {
+    margin-left: 1rem;
+    border-radius: $border-radius-small;
+    background-color: $color-primary-light;
+    padding: 1rem 5rem;
+    color: white;
+    box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    transition: all .3s;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 1rem 2rem rgba($color-black, .2);
+    }
+
+    &:active {
+      transform: translateY(-1px);
+      box-shadow: 0 .7rem 1.4rem rgba($color-black, .2);
+    }
+  }
 }

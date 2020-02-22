@@ -15,6 +15,8 @@ const Input = (props) => {
         id={props.name}
         placeholder={props.name}
         value={props.value}
+        min={props.min}
+        max={props.max}
       />
       <label className="input__label" htmlFor={props.name}>{props.name}</label>
     </div>

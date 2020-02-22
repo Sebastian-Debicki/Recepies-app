@@ -1,39 +1,76 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
-import Link from '../../components/UI/Link/Link';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { sort } from '../../helpers/sort';
+import Search from '../../components/Search/Search';
+import Recepie from './Recepie/Recepie';
 
 class RecepiesList extends Component {
-
+  state = { optionSortBy: '', optionIncDec: 'Increasing', searchValue: '' }
   componentDidMount() {
     const token = localStorage.getItem('token')
     const userId = localStorage.getItem('userId')
     this.props.fetchRecepies(token, userId)
   }
 
+  changeSingleRecepieOptionHandler = (e, recepie) => {
+    if (e.target.value === 'delete') this.props.removeRecepieHandler(recepie.id)
+    if (e.target.value === 'favoriteAdd') {
+      recepie.favorite = true;
+      this.props.switchFavoriteHandler(recepie)
+    }
+    if (e.target.value === 'favoriteRemove') {
+      recepie.favorite = false;
+      this.props.switchFavoriteHandler(recepie)
+    }
+  }
+
+  searchInputHandler = (e) => {
+    this.setState({ searchValue: e.target.value })
+  }
+
+  changeSelectValueSortBy = (option) => {
+    this.setState({ optionSortBy: option })
+  }
+
+  changeSelectValueIncreasing = (option) => {
+    this.setState({ optionIncDec: option })
+  }
+
   render() {
-    let recepiesList = <Spinner />
+    const sortedRecepies = sort(this.props.recepies, this.state.optionSortBy, this.state.optionIncDec)
+    const filteredAndSortedRecepies = sortedRecepies.filter(recepie => recepie.name.toLowerCase().includes(this.state.searchValue.toLocaleLowerCase()))
+    let title, recepiesList;
+    if (this.props.match.path === '/recepies-list') {
+      title = 'LIST';
+      recepiesList = filteredAndSortedRecepies
+    };
+    if (this.props.match.path === '/favorites') {
+      title = 'FAVORITES';
+      recepiesList = filteredAndSortedRecepies.filter(recepie => recepie.favorite);
+    };
+
+    let content = <Spinner />
 
     if (!this.props.loading) {
-      recepiesList = this.props.recepies.map(recepie =>
-        <li key={recepie.id} className="recepies-list__recepie">
-          <Link class="recepies-list__recepie__link" route={`/recepies-list/${recepie.id}`}>
-            <h3 className="heading-tertiary">{recepie.name}</h3>
-            <span className="recepies-list__recepie__calories">800 kcal</span>
-            <p>{recepie.description}</p>
-          </Link>
-          <span className="recepies-list__recepie__icon">&rarr;</span>
-        </li>
+      content = recepiesList.map(recepie =>
+        <Recepie recepie={recepie} key={recepie.id} changeSingleRecepieOptionHandler={this.changeSingleRecepieOptionHandler} />
       )
     }
 
     return (
       <div className="recepies-list">
         <div className={this.props.open ? "include-menu-box open" : "include-menu-box"}>
-          <h2 className="heading-secondary u-margin-bottom-big">Recepies</h2>
+          <h2 className="heading-secondary u-margin-bottom-big">{title}</h2>
+          <Search
+            searchInputHandler={this.searchInputHandler}
+            searchValue={this.state.searchValue}
+            changeSelectValueSortBy={this.changeSelectValueSortBy}
+            changeSelectValueIncreasing={this.changeSelectValueIncreasing}
+          />
           <ul className="recepies-list__list">
-            {recepiesList}
+            {content}
           </ul>
         </div>
       </div>
@@ -53,7 +90,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchRecepies: (token, userId) => { dispatch(actions.fetchRecepies(token, userId)) }
+    fetchRecepies: (token, userId) => { dispatch(actions.fetchRecepies(token, userId)) },
+    switchFavoriteHandler: (recepie) => { dispatch(actions.changeRecepieValues(recepie)) },
+    removeRecepieHandler: (id) => { dispatch(actions.removeRecepie(id)) },
   }
 }
 

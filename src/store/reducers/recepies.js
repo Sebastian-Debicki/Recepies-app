@@ -26,6 +26,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         error: action.error
       }
+    case actionTypes.REMOVE_RECEPIE_SUCCESS:
+      const index = state.recepiesList.findIndex(recepie => recepie.id === action.id)
+      const recepiesList = [...state.recepiesList];
+      recepiesList.splice(index, 1)
+      return {
+        ...state,
+        recepiesList: recepiesList
+      }
     case actionTypes.FETCH_RECEPIES_START:
       return {
         ...state,

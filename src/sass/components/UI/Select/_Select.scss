@@ -1,0 +1,108 @@
+.select-box {
+  display: flex;
+  width: 22rem;
+  flex-direction: column;
+  font-size: $default-font-size;
+  position: absolute;
+
+  &--sortBy {
+    top: 6rem;
+    right: 0;
+  }
+
+  &--incDec {
+    width: 15rem;
+    top: 12rem;
+    right: 0;
+
+    @include respond(phone) {
+      top: 6rem;
+      right: 23rem;
+    }
+  }
+
+  &__options-container {
+    background-color: $color-grey-dark-3;
+    color: $color-grey-light-1;
+    max-height: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all .4s;
+    border-radius: $border-radius-small;
+    overflow: hidden;
+    order: 1;
+    position: relative;
+    z-index: 2;
+
+    &.active {
+      max-height: 15rem;
+      opacity: 1;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        width: .5rem;
+        border-radius: 0 3px 3px 0;
+        background: lighten($color-grey-dark-3, 8%);
+        border: none;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $color-black;
+        border-radius: 0 3px 3px 0;
+        border: none;
+      }
+    }
+
+    &.active+.select-box__selected::after {
+      top: .5rem;
+      transform: rotateX(180deg) translateY(-50%);
+    }
+  }
+
+  &__option,
+  &__selected {
+    padding: 1.2rem 2.4rem;
+    cursor: pointer;
+  }
+
+  &__option:hover {
+    background-color: lighten($color-grey-dark-3, 8%);
+  }
+
+  &__selected {
+    background-color: $color-grey-dark-3;
+    border-radius: $border-radius-small;
+    margin-bottom: .8rem;
+    color: $color-grey-light-1;
+    position: relative;
+    top: 30%;
+    order: 0;
+
+    // &.hidden {
+    //   opacity: 0;
+    // }
+
+    &::after {
+      content: "";
+      background: url('../../../../assets/icons/down-arrow.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      height: 2rem;
+      width: 2rem;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all .4s;
+    }
+  }
+
+  &__label {
+    cursor: pointer;
+  }
+
+  &__radio {
+    display: none;
+  }
+
+}
