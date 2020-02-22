@@ -14,10 +14,10 @@ export const authFail = (error) => {
   }
 }
 
-export const authSuccess = (idToken, userId) => {
+export const authSuccess = (token, userId) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    idToken,
+    token,
     userId
   }
 }

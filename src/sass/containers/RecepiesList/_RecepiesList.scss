@@ -1,22 +1,19 @@
 .recepies-list {
   background-color: $color-grey-light-2;
-  height: 100vh;
+  height: 200vh;
+  width: 100%;
 
-  &__box {
-    position: absolute;
-    left: 6rem;
-    transition: .5s ease-in-out;
+  &__list {
+    list-style: none;
+    position: relative;
+  }
 
-    &.open {
-      transform: translateX(0);
+  &__search {
+    position: relative;
+    padding-bottom: 9rem;
 
-      @include respond(tab-port) {
-        transform: translateX($nav-translateX);
-      }
+    @include respond(phone) {
+      padding-bottom: 5rem;
     }
   }
-}
-
-.layout {
-  position: relative;
 }

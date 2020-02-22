@@ -1,0 +1,88 @@
+.recepies-list {
+
+  &__recepie {
+    flex-basis: 100%;
+    background-color: $color-grey-dark-3;
+    padding: 1rem 0;
+    border-radius: $border-radius-small;
+    transition: all .2s;
+    position: relative;
+    color: $color-grey-light-1;
+
+    &:hover {
+      background-color: lighten($color-grey-dark-3, 8%);
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1px;
+    }
+
+    &__link {
+      font-size: $default-font-size;
+      text-decoration: none;
+      display: block;
+      color: $color-grey-light-1;
+      padding-left: 5rem;
+    }
+
+    &__calories {
+      font-size: 1.3rem;
+    }
+
+    &__icon--arrow {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      opacity: 1;
+      transition: all .2s;
+
+      @include respond(phone) {
+        opacity: 0;
+      }
+    }
+
+    &__icon--settings {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      padding: 2rem;
+      opacity: 1;
+      cursor: pointer;
+      transition: all .2s;
+
+      @include respond(phone) {
+        opacity: 0;
+      }
+    }
+
+    &:hover &__icon--arrow {
+      opacity: 1;
+    }
+
+    &:hover &__icon--settings {
+      opacity: 1;
+    }
+
+    &__select {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 5rem;
+      height: 100%;
+      background-color: $color-grey-dark-3;
+      border: none;
+      opacity: 0;
+      z-index: 1;
+      padding: 2rem 0;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      border: none;
+      color: white;
+      font-family: inherit;
+    }
+  }
+}

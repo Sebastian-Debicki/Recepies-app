@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Layout from './components/Layout/Layout';
 import Home from './containers/Home/Home';
 import { Route } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Auth from './containers/Auth/Auth';
 import firebase from 'firebase';
 import Logout from './containers/Auth/Logout/Logout';
 import RecepiesList from './containers/RecepiesList/RecepiesList';
+import RecepiePage from './containers/RecepiePage/RecepiePage';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBlJ0x4RZjgSsDawoyWN5UDKiqh6Jm9jLA",
@@ -23,22 +24,26 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
-function App(props) {
+class App extends Component {
 
-  React.useEffect(() => {
-    props.onTryAutoSignIn()
-  })
+  componentDidMount() {
+    this.props.onTryAutoSignIn()
+  }
 
-  return (
-    <>
-      <Layout>
-        <Route path="/" component={Home} exact />
-        <Route path="/auth" component={Auth} />
-        <Route path="/logout" component={Logout} />
-        <Route path="/recepies-list" component={RecepiesList} />
-      </Layout>
-    </>
-  );
+  render() {
+    return (
+      <>
+        <Layout>
+          <Route path="/" component={Home} exact />
+          <Route path="/auth" component={Auth} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/recepies-list" exact component={RecepiesList} />
+          <Route path="/favorites" exact component={RecepiesList} />
+          <Route path="/recepies-list/:id" component={RecepiePage} />
+        </Layout>
+      </>
+    );
+  }
 }
 
 const mapDispatchToProps = dispatch => {

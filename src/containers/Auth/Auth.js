@@ -32,17 +32,19 @@ const Auth = (props) => {
       changed={(e) => changeInputValuesHandler(e, formEl.id)}
       type={formEl.id}
       minLength={formEl.config.validation && formEl.config.validation.minLength}
+      name={formEl.config.name}
+      pattern="^\S+$"
     />)
 
   return (
     <div className="auth">
       {props.isAuth && <Redirect to="/recepies-list" />}
       <div className="auth__box">
-        <h2 className="heading-secondary u-margin-bottom-small">{switchAuthTypeState ? 'Sign Up' : 'Sign In'}</h2>
+        <h2 className="heading-secondary u-margin-bottom-small u-center">{switchAuthTypeState ? 'Sign Up' : 'Sign In'}</h2>
         {props.error && <p className="auth__error-message">{props.error.message}</p>}
         <form className="auth__form" onSubmit={formSubmitHandler}>
           {form}
-          <Button class="btn btn__secondary">Submit</Button>
+          <Button class="btn btn__primary">Submit</Button>
         </form>
         <Button class="btn btn--switcher" clicked={switchAuthTypeHandler}>Switch to: {switchAuthTypeState ? 'Sign In' : 'Sign Up'}</Button>
       </div>

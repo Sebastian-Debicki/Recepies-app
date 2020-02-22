@@ -10,7 +10,8 @@ const LogInNav = (props) => {
   return (
     <nav className={navigationClass}>
       <ul className="navigation--login__list">
-        <li className="navigation__item"><Link class="link link--login" route="/recepies-list"><span>List of Recepies</span> <span className="navigation--login__icon fas fa-list-ul"></span></Link></li>
+        <li className="navigation__item"><Link class="link link--login" route="/recepies-list" exact><span>List of Recepies</span> <span className="navigation--login__icon fas fa-list-ul"></span></Link></li>
+        <li className="navigation__item"><Link class="link link--login" route="/favorites"><span>Favorites</span> <span className="navigation--login__icon fas fa-star"></span></Link></li>
         <li className="navigation__item"><Link class="link link--login" route="/logout"><span>Logout</span><span className="navigation--login__icon fas fa-sign-out-alt"></span></Link></li>
       </ul>
     </nav>

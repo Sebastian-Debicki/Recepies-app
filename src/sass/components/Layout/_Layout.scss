@@ -1,0 +1,16 @@
+.include-menu-box {
+  position: absolute;
+  left: 6rem;
+  transition: .5s ease-in-out;
+  margin: 0 auto;
+  width: calc(100% - 7rem);
+
+  &.open {
+    transform: translateX(0);
+
+    @include respond(tab-port) {
+      transform: translateX($nav-translateX);
+      width: calc(100% - 22rem);
+    }
+  }
+}
