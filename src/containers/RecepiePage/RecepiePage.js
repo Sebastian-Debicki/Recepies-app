@@ -15,11 +15,6 @@ class RecepiePage extends Component {
     editIngredients: false,
     editCalories: false,
   }
-  componentDidMount() {
-    const token = localStorage.getItem('token')
-    const userId = localStorage.getItem('userId')
-    this.props.fetchRecepies(token, userId);
-  }
 
   getRecepie = () => {
     const recepie = this.props.recepies.find(recepie => recepie.id === this.props.match.params.id);
@@ -145,7 +140,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchRecepies: (token, userId) => { dispatch(actions.fetchRecepies(token, userId)) },
     changeRecepieValues: (recepie, token) => { dispatch(actions.changeRecepieValues(recepie, token)) }
   }
 }

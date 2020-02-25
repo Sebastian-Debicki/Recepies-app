@@ -1,7 +1,7 @@
 
-export const sort = (values, optionSortBy, optionIncDec) => {
+export const sort = (recepies, optionSortBy, optionIncDec) => {
   if (optionIncDec === 'Increasing') {
-    values.sort((a, b) => {
+    recepies.sort((a, b) => {
       switch (optionSortBy) {
         case 'Last modification date': {
           if (a.modificationDate < b.modificationDate) return 1
@@ -19,15 +19,15 @@ export const sort = (values, optionSortBy, optionIncDec) => {
           return 0
         }
         case 'Calories': {
-          if (a.calories < b.calories) return -1
-          if (a.calories > b.calories) return 1
+          if (Number(a.calories) < Number(b.calories)) return -1
+          if (Number(a.calories) > Number(b.calories)) return 1
           return 0
         }
-        default: return values
+        default: return recepies
       }
     })
   } else if (optionIncDec === 'Decreasing') {
-    values.sort((a, b) => {
+    recepies.sort((a, b) => {
       switch (optionSortBy) {
         case 'Last modification date': {
           if (a.modificationDate < b.modificationDate) return -1
@@ -45,13 +45,13 @@ export const sort = (values, optionSortBy, optionIncDec) => {
           return 0
         }
         case 'Calories': {
-          if (a.calories < b.calories) return 1
-          if (a.calories > b.calories) return -1
+          if (Number(a.calories) < Number(b.calories)) return 1
+          if (Number(a.calories) > Number(b.calories)) return -1
           return 0
         }
-        default: return values
+        default: return recepies
       }
     })
   }
-  return values;
+  return recepies;
 }

@@ -12,6 +12,7 @@ beforeEach(() => {
     changed={changedMock}
     maxLength={12}
     minLength={6}
+    name="some-name"
   />)
 })
 
@@ -54,6 +55,14 @@ describe('<Input/>', () => {
 
   it('has a correct maxLength props', () => {
     expect(wrapper.find('input').prop('maxLength')).toEqual(12)
+  })
+
+  it('has a correct id props', () => {
+    expect(wrapper.find('input').prop('id')).toEqual("some-name")
+  })
+
+  it('has a correct placeholder props', () => {
+    expect(wrapper.find('input').prop('placeholder')).toEqual("some-name")
   })
 
   it('runs changed function when user type in input area', () => {

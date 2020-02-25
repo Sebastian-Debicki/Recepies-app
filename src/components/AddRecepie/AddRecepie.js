@@ -4,13 +4,10 @@ import Button from '../UI/Button/Button';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import moment from 'moment';
+import { useAddRecepieState } from './useAddRecepieState';
 
 const AddRecepie = (props) => {
-  const [nameRecepieState, setNameRecepieState] = React.useState('');
-  const [descriptionRecepieState, setDescriptionRecepieState] = React.useState('');
-
-  const changeRecepieNameHandler = (e) => setNameRecepieState(e.target.value)
-  const changeRecepieDescriptionHandler = (e) => setDescriptionRecepieState(e.target.value);
+  const { nameRecepieState, descriptionRecepieState, changeRecepieNameHandler, changeRecepieDescriptionHandler, setNameRecepieState, setDescriptionRecepieState } = useAddRecepieState()
 
   const addRecepieHandler = (e) => {
     const currentDate = moment().format("DD.MM.YY HH:mm:ss");
@@ -63,7 +60,6 @@ const AddRecepie = (props) => {
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
-    userId: state.auth.userId
   }
 }
 

@@ -22,12 +22,15 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.analytics();
 
-class App extends Component {
+export class UnconectedApp extends Component {
 
   componentDidMount() {
     this.props.onTryAutoSignIn()
+    const token = localStorage.getItem('token')
+    const userId = localStorage.getItem('userId')
+    this.props.fetchRecepies(token, userId)
   }
 
   render() {
@@ -48,8 +51,9 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchRecepies: (token, userId) => { dispatch(actions.fetchRecepies(token, userId)) },
     onTryAutoSignIn: () => dispatch(actions.onTryAutoSignIn())
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(UnconectedApp);
