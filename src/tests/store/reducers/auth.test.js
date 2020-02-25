@@ -28,7 +28,7 @@ describe('auth reducer', () => {
   it('AUTH_SUCCESS - return correct values', () => {
     expect(authReducer(initialState, {
       type: actionTypes.AUTH_SUCCESS,
-      idToken: 'some-token',
+      token: 'some-token',
       userId: 'some-user-id'
     })).toEqual({
       token: 'some-token',

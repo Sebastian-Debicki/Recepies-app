@@ -26,7 +26,7 @@ describe('AUTH_SUCCESS - actions', () => {
   })
 
   it('has a correct idToken value', () => {
-    expect(action.idToken).toEqual('some-token');
+    expect(action.token).toEqual('some-token');
   })
 
   it('has a correct userId value', () => {

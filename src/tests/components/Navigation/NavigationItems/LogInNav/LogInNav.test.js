@@ -17,11 +17,7 @@ describe('<LogInNav/>', () => {
     expect(wrapper.find('ul').length).toBe(1)
   })
 
-  it('render one ul tag', () => {
-    expect(wrapper.find('li').length).toBe(1)
-  })
-
-  it('render one <Link> component', () => {
-    expect(wrapper.find(Link).length).toBe(1)
+  it('render three <Link> components', () => {
+    expect(wrapper.find(Link).length).toBe(3)
   })
 })

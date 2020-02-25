@@ -7,12 +7,7 @@ import Search from '../../components/Search/Search';
 import Recepie from './Recepie/Recepie';
 
 class RecepiesList extends Component {
-  state = { optionSortBy: '', optionIncDec: 'Increasing', searchValue: '' }
-  componentDidMount() {
-    const token = localStorage.getItem('token')
-    const userId = localStorage.getItem('userId')
-    this.props.fetchRecepies(token, userId)
-  }
+  state = { optionSortBy: 'Last modification date', optionIncDec: 'Increasing', searchValue: '' }
 
   changeSingleRecepieOptionHandler = (e, recepie) => {
     if (e.target.value === 'delete') this.props.removeRecepieHandler(recepie.id)
@@ -82,8 +77,6 @@ class RecepiesList extends Component {
 
 const mapStateToProps = state => {
   return {
-    token: state.auth.token,
-    userId: state.auth.userId,
     open: state.open.navOpen,
     recepies: state.recepies.recepiesList,
     loading: state.recepies.loading
@@ -92,7 +85,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchRecepies: (token, userId) => { dispatch(actions.fetchRecepies(token, userId)) },
     switchFavoriteHandler: (recepie) => { dispatch(actions.changeRecepieValues(recepie)) },
     removeRecepieHandler: (id) => { dispatch(actions.removeRecepie(id)) },
   }

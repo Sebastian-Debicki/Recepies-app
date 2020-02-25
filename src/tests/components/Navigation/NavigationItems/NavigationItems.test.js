@@ -14,10 +14,6 @@ describe('<NavigationItems', () => {
     expect(wrapper.length).toBe(1)
   })
 
-  it('render one nav tag', () => {
-    expect(wrapper.find('nav').length).toBe(1)
-  })
-
   it('render <LogInNav/> when props isAuth=true', () => {
     wrapper.setProps({ isAuth: true })
     expect(wrapper.find(LogInNav).length).toBe(1)

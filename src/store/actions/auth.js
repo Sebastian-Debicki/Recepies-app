@@ -39,9 +39,10 @@ export const auth = (email, password, signInsignUpSwitcher) => {
 
     signInOrSignUp
       .then((res) => {
-        localStorage.setItem('token', res.user._lat)
+        console.log(res)
+        localStorage.setItem('token', res.user.ma)
         localStorage.setItem('userId', res.user.uid)
-        dispatch(authSuccess(res.user._lat, res.user.uid))
+        dispatch(authSuccess(res.user.ma, res.user.uid))
       })
       .catch(function (error) {
         dispatch(authFail(error))
