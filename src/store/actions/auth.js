@@ -39,7 +39,6 @@ export const auth = (email, password, signInsignUpSwitcher) => {
 
     signInOrSignUp
       .then((res) => {
-        console.log(res)
         localStorage.setItem('token', res.user.ma)
         localStorage.setItem('userId', res.user.uid)
         dispatch(authSuccess(res.user.ma, res.user.uid))

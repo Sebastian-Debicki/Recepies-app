@@ -30,7 +30,9 @@ export class UnconectedApp extends Component {
     this.props.onTryAutoSignIn()
     const token = localStorage.getItem('token')
     const userId = localStorage.getItem('userId')
-    this.props.fetchRecepies(token, userId)
+    if (token) {
+      this.props.fetchRecepies(token, userId)
+    }
   }
 
   render() {

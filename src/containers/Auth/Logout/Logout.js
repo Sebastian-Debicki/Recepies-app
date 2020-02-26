@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 const Logout = (props) => {
 
   React.useEffect(() => {
-    props.logout()
+    props.logout();
   })
 
   return (

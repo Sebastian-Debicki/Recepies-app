@@ -9,6 +9,13 @@ import Recepie from './Recepie/Recepie';
 class RecepiesList extends Component {
   state = { optionSortBy: 'Last modification date', optionIncDec: 'Increasing', searchValue: '' }
 
+  componentDidMount() {
+    const token = localStorage.getItem('token')
+    const userId = localStorage.getItem('userId')
+    this.props.fetchRecepies(token, userId)
+    // window.location.reload()
+  }
+
   changeSingleRecepieOptionHandler = (e, recepie) => {
     if (e.target.value === 'delete') this.props.removeRecepieHandler(recepie.id)
     if (e.target.value === 'favoriteAdd') {
@@ -87,6 +94,7 @@ const mapDispatchToProps = dispatch => {
   return {
     switchFavoriteHandler: (recepie) => { dispatch(actions.changeRecepieValues(recepie)) },
     removeRecepieHandler: (id) => { dispatch(actions.removeRecepie(id)) },
+    fetchRecepies: (token, userId) => { dispatch(actions.fetchRecepies(token, userId)) }
   }
 }
 
