@@ -57,20 +57,6 @@
     border-radius: $border-radius-small;
   }
 
-  // BUTTON EDIT
-  &--edit {
-    color: $color-primary-dark;
-    text-transform: capitalize;
-    font-weight: 300;
-    transition: .3s;
-    opacity: 1;
-    margin-left: 1rem;
-
-    @include respond(tab-port) {
-      opacity: 0;
-    }
-  }
-
   // BUTTON ADD INGREDIENT
   &--add-ingredient {
     margin-left: 2rem;

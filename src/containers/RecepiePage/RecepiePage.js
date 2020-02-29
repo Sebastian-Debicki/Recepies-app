@@ -21,7 +21,7 @@ class RecepiePage extends Component {
     return recepie
   }
 
-  editRecepieHandler = (type) => {
+  changeToEditModeRecepie = (type) => {
     if (type === 'name') this.setState({ editName: !this.state.editName, editDescription: false, editIngredients: false, editCalories: false })
     if (type === 'description') this.setState({ editDescription: !this.state.editDescription, editName: false, editIngredients: false, editCalories: false })
     if (type === 'ingredients') this.setState({ editIngredients: !this.state.editIngredients, editDescription: false, editName: false, editCalories: false })
@@ -70,29 +70,29 @@ class RecepiePage extends Component {
             </div>
             <div className="recepie-page__box">
               <div className="recepie-page__edit-box">
-                <div className="recepie-page__backdrop" onClick={() => this.editRecepieHandler('calories')}></div>
-                <h3 className="heading-quaternary">Calories <Button class="btn btn--edit">Edit</Button></h3>
+                <div className="recepie-page__backdrop" onClick={() => this.changeToEditModeRecepie('calories')}></div>
+                <h3 className="heading-quaternary">Calories <span className="recepie-page__edit">Edit</span></h3>
                 {this.state.editCalories ?
-                  <Input class="input input--calories" type="number" min={0} value={recepie.calories} changed={(e) => this.changeRecepieValue(e, 'calories')} /> :
+                  <Input class="input input--calories" type="number" value={recepie.calories} changed={(e) => this.changeRecepieValue(e, 'calories')} /> :
                   <p className="recepie-page__text">{recepie.calories}</p>}
               </div>
               <div className="recepie-page__edit-box">
-                <div className="recepie-page__backdrop" onClick={() => this.editRecepieHandler('name')}></div>
-                <h3 className="heading-quaternary">Name <Button class="btn btn--edit">Edit</Button></h3>
+                <div className="recepie-page__backdrop" onClick={() => this.changeToEditModeRecepie('name')}></div>
+                <h3 className="heading-quaternary">Name <span className="recepie-page__edit">Edit</span></h3>
                 {this.state.editName ?
                   <Input class="input" value={recepie.name} changed={(e) => this.changeRecepieValue(e, 'name')} /> :
                   <p className="recepie-page__name">{recepie.name}</p>}
               </div>
               <div className="recepie-page__edit-box">
-                <div className="recepie-page__backdrop" onClick={() => this.editRecepieHandler('description')}></div>
-                <h3 className="heading-quaternary">Description <Button class="btn btn--edit">Edit</Button></h3>
+                <div className="recepie-page__backdrop" onClick={() => this.changeToEditModeRecepie('description')}></div>
+                <h3 className="heading-quaternary">Description <span className="recepie-page__edit">Edit</span></h3>
                 {this.state.editDescription ?
                   <Input class="input" value={recepie.description} changed={(e) => this.changeRecepieValue(e, 'description')} /> :
                   <p className="recepie-page__text">{recepie.description}</p>}
               </div>
               <div className="recepie-page__edit-box">
-                <div className="recepie-page__backdrop" onClick={() => this.editRecepieHandler('ingredients')}></div>
-                <h3 className="heading-quaternary">Ingredients <Button class="btn btn--edit">Edit</Button></h3>
+                <div className="recepie-page__backdrop" onClick={() => this.changeToEditModeRecepie('ingredients')}></div>
+                <h3 className="heading-quaternary">Ingredients <span className="recepie-page__edit">Edit</span></h3>
                 {this.state.editIngredients &&
                   <form className="recepie-page__ingredients-form" onSubmit={(e) => this.changeRecepieValue(e, 'addIngredient')}>
                     <Input class="input input--add-recepie" name="Ingredient" required={true} />
@@ -108,7 +108,7 @@ class RecepiePage extends Component {
                 </ul>
               </div>
               <div className="recepie-page__edit-box">
-                <h3 className="heading-quaternary">Preparation <Button class="btn btn--edit">Edit</Button></h3>
+                <h3 className="heading-quaternary">Preparation <span className="recepie-page__edit">Edit</span></h3>
                 <div className="input-box">
                   <textarea
                     className="input input--textarea"

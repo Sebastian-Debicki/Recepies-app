@@ -17,7 +17,7 @@ const Layout = (props) => {
         <NavigationItems isAuth={props.isAuth} open={props.openNav} />
         {props.isAuth && <HamburgerButton clicked={props.navTogglerHandler} open={props.openNav} />}
         {props.isAuth && <AddRecepieButton clicked={props.openModalHandler} open={props.openNav} />}
-        {props.isAuth && <Modal open={props.modalOpen} closeModalHandler={props.closeModalHandler}><AddRecepie /></Modal>}
+        {props.isAuth && <Modal open={props.openModal} closeModalHandler={props.closeModalHandler}><AddRecepie /></Modal>}
         <main>
           {props.children}
         </main>
@@ -36,7 +36,7 @@ const mapStateToProps = state => {
     isAuth: state.auth.token !== null,
     loading: state.auth.loading,
     openNav: state.open.navOpen,
-    modalOpen: state.open.modalOpen
+    openModal: state.open.modalOpen
   }
 }
 

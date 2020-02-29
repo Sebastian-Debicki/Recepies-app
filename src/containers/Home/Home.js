@@ -3,11 +3,11 @@ import Link from '../../components/UI/Link/Link';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-const Home = (props) => {
+const Home = ({ isAuth }) => {
 
   return (
     <div className="home">
-      {props.isAuth && <Redirect to="/recepies-list" />}
+      {isAuth && <Redirect to="/recepies-list" />}
       <div className="home__text-box">
         <h1 className="heading-primary u-margin-bottom-big">
           <span className="heading-primary--main">Recepies</span>
