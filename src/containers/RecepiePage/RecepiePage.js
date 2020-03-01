@@ -9,7 +9,6 @@ import moment from 'moment';
 
 class RecepiePage extends Component {
   state = {
-    recepie: '',
     editName: false,
     editDescription: false,
     editIngredients: false,
@@ -22,10 +21,11 @@ class RecepiePage extends Component {
   }
 
   changeToEditModeRecepie = (type) => {
-    if (type === 'name') this.setState({ editName: !this.state.editName, editDescription: false, editIngredients: false, editCalories: false })
-    if (type === 'description') this.setState({ editDescription: !this.state.editDescription, editName: false, editIngredients: false, editCalories: false })
-    if (type === 'ingredients') this.setState({ editIngredients: !this.state.editIngredients, editDescription: false, editName: false, editCalories: false })
-    if (type === 'calories') this.setState({ editCalories: !this.state.editCalories, editDescription: false, editIngredients: false, editName: false })
+    const { editName, editDescription, editIngredients, editCalories } = this.state
+    if (type === 'name') this.setState({ editName: !editName, editDescription: false, editIngredients: false, editCalories: false })
+    if (type === 'description') this.setState({ editDescription: !editDescription, editName: false, editIngredients: false, editCalories: false })
+    if (type === 'ingredients') this.setState({ editIngredients: !editIngredients, editDescription: false, editName: false, editCalories: false })
+    if (type === 'calories') this.setState({ editCalories: !editCalories, editDescription: false, editIngredients: false, editName: false })
   }
 
   changeRecepieValue = (e, type, ingId) => {
@@ -53,8 +53,7 @@ class RecepiePage extends Component {
         break
       default: return recepie
     }
-    this.setState({ recepie })
-    this.props.changeRecepieValues(this.state.recepie)
+    this.props.changeRecepieValues(recepie)
   }
 
   render() {

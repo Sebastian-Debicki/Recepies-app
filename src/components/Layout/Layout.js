@@ -8,18 +8,18 @@ import Modal from '../UI/Modal/Modal';
 import AddRecepieButton from '../UI/AddRecepieButton/AddRecepieButton';
 import AddRecepie from '../AddRecepie/AddRecepie';
 
-const Layout = (props) => {
+const Layout = ({ loading, isAuth, openNav, openModal, navTogglerHandler, openModalHandler, closeModalHandler, children }) => {
 
   let layout = <Spinner />
-  if (!props.loading) {
+  if (!loading) {
     layout =
       <div className="layout">
-        <NavigationItems isAuth={props.isAuth} open={props.openNav} />
-        {props.isAuth && <HamburgerButton clicked={props.navTogglerHandler} open={props.openNav} />}
-        {props.isAuth && <AddRecepieButton clicked={props.openModalHandler} open={props.openNav} />}
-        {props.isAuth && <Modal open={props.openModal} closeModalHandler={props.closeModalHandler}><AddRecepie /></Modal>}
+        <NavigationItems isAuth={isAuth} open={openNav} />
+        {isAuth && <HamburgerButton clicked={navTogglerHandler} open={openNav} />}
+        {isAuth && <AddRecepieButton clicked={openModalHandler} open={openNav} />}
+        {isAuth && <Modal open={openModal} closeModalHandler={closeModalHandler}><AddRecepie /></Modal>}
         <main>
-          {props.children}
+          {children}
         </main>
       </div>
   }

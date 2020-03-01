@@ -27,11 +27,19 @@ export const saveRecepie = (recepie, token) => {
   }
 }
 
+export const changeRecepieValueSuccess = (recepie) => {
+  return {
+    type: actionTypes.CHANGE_RECEPIE_SUCCESS,
+    recepie
+  }
+}
+
 export const changeRecepieValues = (recepie) => {
   return dispatch => {
     firebase.database().ref('recepies/' + recepie.id).set({
       ...recepie
     })
+    dispatch(changeRecepieValueSuccess(recepie))
   }
 }
 

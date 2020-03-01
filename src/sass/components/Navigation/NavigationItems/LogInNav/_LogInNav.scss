@@ -2,6 +2,9 @@
   width: $nav-width;
   height: 100vh;
   background-color: $color-primary;
+  background-position: center;
+  background-size: cover;
+
   position: fixed;
   @include clearfix;
   float: left;

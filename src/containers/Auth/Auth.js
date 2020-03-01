@@ -35,7 +35,6 @@ const Auth = ({ auth, isAuth, error }) => {
       name={formEl.config.name}
       pattern="^\S+$"
     />)
-
   return (
     <div className="auth">
       {isAuth && <Redirect to="/recepies-list" />}

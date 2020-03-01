@@ -1,6 +1,6 @@
 # Recepies-app
 
-You can store your recepies here, recepies are store in firebase database. Every user have access to them own recepies. 
+You can store your recepies here, recepies are storing in firebase database. Every user have access to them own recepies. 
 
 * [firebase hosting](https://recepiesapp.web.app/ )
 

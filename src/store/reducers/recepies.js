@@ -34,6 +34,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         recepiesList: recepiesList
       }
+    case actionTypes.CHANGE_RECEPIE_SUCCESS:
+      let recepiesListUpdated = [...state.recepiesList];
+      const updatedRecepie = recepiesListUpdated.find(recepie => recepie.id === action.recepie.id)
+      recepiesListUpdated.forEach(recepie => recepie = updatedRecepie)
+      return {
+        ...state,
+        recepiesList: recepiesListUpdated
+      }
     case actionTypes.FETCH_RECEPIES_START:
       return {
         ...state,

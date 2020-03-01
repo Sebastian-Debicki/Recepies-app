@@ -6,7 +6,7 @@ import * as actions from '../../store/actions/index';
 import moment from 'moment';
 import { useAddRecepieState } from './useAddRecepieState';
 
-const AddRecepie = (props) => {
+const AddRecepie = ({ token, userId, saveRecepie, closeModal }) => {
   const { nameRecepieState, descriptionRecepieState, changeRecepieNameHandler, changeRecepieDescriptionHandler, setNameRecepieState, setDescriptionRecepieState } = useAddRecepieState()
 
   const addRecepieHandler = (e) => {
@@ -18,15 +18,15 @@ const AddRecepie = (props) => {
       preparation: '',
       calories: 0,
       ingredients: [{ id: 1, name: '' }],
-      userId: props.userId,
+      userId: userId,
       addedDate: currentDate,
       modificationDate: currentDate,
       favorite: false,
     }
-    props.saveRecepie(recepie, props.token)
+    saveRecepie(recepie, token)
     setNameRecepieState('');
     setDescriptionRecepieState('');
-    props.closeModal()
+    closeModal()
   }
 
   return (
