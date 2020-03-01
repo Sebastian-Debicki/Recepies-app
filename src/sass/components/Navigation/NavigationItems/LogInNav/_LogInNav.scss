@@ -1,0 +1,28 @@
+.navigation--login {
+  width: $nav-width;
+  height: 100vh;
+  background-color: $color-primary;
+  background-position: center;
+  background-size: cover;
+
+  position: fixed;
+  @include clearfix;
+  float: left;
+  z-index: 999;
+
+  &--open {
+    animation: openNavigation .5s ease-in-out forwards;
+  }
+
+  &--close {
+    animation: closeNavigation .5s ease-in-out forwards;
+  }
+
+  &__list {
+    margin-top: 4rem;
+  }
+
+  &__icon {
+    font-size: 2.7rem;
+  }
+}

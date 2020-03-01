@@ -1,0 +1,115 @@
+.recepie-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+
+  &__edit-box {
+    position: relative;
+    font-size: $default-font-size;
+    transition: .3s;
+    border-radius: $border-radius-small;
+    margin: 1.5rem 0;
+    padding: 2rem 1.5rem;
+
+    &:hover {
+      background-color: $color-grey-light-3;
+    }
+
+    &:hover .recepie-page__edit {
+      opacity: 1;
+    }
+
+    &:hover .heading-quaternary {
+      transform: translateY(-4px);
+    }
+  }
+
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 1;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  &__name {
+    display: block;
+    font-size: 4rem;
+    color: $color-black;
+  }
+
+  &__text {
+    color: $color-black;
+    font-weight: bold;
+  }
+
+  &__ingredients-form {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    margin-top: 1.5rem;
+
+    @include respond(phone) {
+      width: 80%;
+    }
+
+    @include respond(tab-port) {
+      width: 60%;
+    }
+
+    @include respond(tab-land) {
+      width: 40%;
+    }
+  }
+
+  &__ingredients-list {
+    position: relative;
+    padding-left: 3rem;
+    color: $color-black;
+    z-index: 2;
+
+    &__ingredient {
+      padding: 1rem 0;
+    }
+  }
+
+  &__delete-icon {
+    font-size: $default-font-size;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    padding: 1rem;
+    margin-right: 1.5rem;
+    transform: scale(1);
+    transition: all .2s;
+
+    &:hover {
+      color: $color-error;
+      transform: scale(1.4);
+    }
+  }
+
+  &__preparation {
+    color: $color-black;
+  }
+
+  // BUTTON EDIT
+  &__edit {
+    color: $color-primary-dark;
+    text-transform: capitalize;
+    font-weight: 300;
+    transition: .3s;
+    opacity: 1;
+    margin-left: 1rem;
+    font-size: 1.5rem;
+
+    @include respond(tab-port) {
+      opacity: 0;
+    }
+  }
+
+}

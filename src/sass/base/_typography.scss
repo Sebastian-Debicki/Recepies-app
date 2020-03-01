@@ -1,0 +1,80 @@
+body {
+  font-family: 'Lato', sans-serif;
+  line-height: 1.7;
+  color: $color-grey-dark-2;
+}
+
+.heading-primary {
+  text-transform: uppercase;
+  color: $color-grey-light-2;
+
+  &--main {
+    font-size: 6rem;
+    display: block;
+    letter-spacing: .8rem;
+  }
+
+  &--sub {
+    font-size: 3rem;
+  }
+}
+
+.heading-box {
+  text-align: center;
+}
+
+.heading-secondary {
+  display: inline-block;
+  font-size: 3.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: $color-primary-dark;
+  position: relative;
+  z-index: 0;
+  padding: 0 1rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -.5rem;
+    left: -1rem;
+    width: 40%;
+    height: 100%;
+    border-top: 4px solid $color-primary-dark;
+    border-left: 4px solid $color-primary-dark;
+    z-index: -1;
+    border-radius: $border-radius-small;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    right: -1rem;
+    bottom: -.5rem;
+    width: 40%;
+    height: 100%;
+    border-bottom: 4px solid $color-primary-dark;
+    border-right: 4px solid $color-primary-dark;
+    z-index: -1;
+    border-radius: $border-radius-small;
+  }
+}
+
+.heading-tertiary {
+  font-size: 1.9rem;
+  display: block;
+  padding-right: 1rem;
+
+  @include respond(phone) {
+    display: inline-block;
+  }
+}
+
+.heading-quaternary {
+  display: inline-block;
+  font-size: 2.2rem;
+  position: relative;
+  transition: .3s;
+  z-index: 0;
+  margin-bottom: 1.3rem;
+}

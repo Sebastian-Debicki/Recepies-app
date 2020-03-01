@@ -1,0 +1,18 @@
+.recepies-list {
+  min-height: 100vh;
+  width: 100%;
+
+  &__list {
+    list-style: none;
+    position: relative;
+  }
+
+  &__search {
+    position: relative;
+    padding-bottom: 10rem;
+
+    @include respond(phone) {
+      padding-bottom: 5rem;
+    }
+  }
+}

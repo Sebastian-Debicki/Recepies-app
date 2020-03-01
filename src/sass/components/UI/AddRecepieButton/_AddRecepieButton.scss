@@ -1,0 +1,27 @@
+.add-button {
+  font-size: 5rem;
+  color: $color-grey-light-2;
+  position: fixed;
+  top: 2rem;
+  left: 15rem;
+  width: 7rem;
+  height: 7rem;
+  background-color: transparent;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  background-color: $color-primary-dark;
+  cursor: pointer;
+  transition: transform .5s ease-in-out, background-color .3s, color .3s;
+  box-shadow: 0 1.5rem 3rem rgba($color-black, .3);
+  z-index: 1000;
+
+  &.open {
+    transform: translateX($nav-translateX);
+  }
+
+  &:hover {
+    background-color: $color-success;
+    color: $color-grey-dark-2;
+  }
+}
