@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from '../../../UI/Link/Link';
 
-const LogInNav = (props) => {
+const LogInNav = ({ open }) => {
   let navigationClass = 'navigation--login navigation--login--close';
-  if (props.open) {
+  if (open) {
     navigationClass = 'navigation--login navigation--login--open'
   }
 

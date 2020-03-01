@@ -54,6 +54,16 @@
     width: 45%;
   }
 
+  &__close-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 4rem;
+    transform: rotate(45deg);
+    cursor: pointer;
+    padding: 1rem 2rem;
+  }
+
   &.open {
     z-index: 2001;
     opacity: 1;

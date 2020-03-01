@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from './components/Layout/Layout';
 import Home from './containers/Home/Home';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './store/actions/index';
 import Auth from './containers/Auth/Auth';
@@ -22,20 +22,21 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
 
 export class UnconectedApp extends Component {
 
   componentDidMount() {
     this.props.onTryAutoSignIn()
-    const token = localStorage.getItem('token')
-    const userId = localStorage.getItem('userId')
-    this.props.fetchRecepies(token, userId)
+  }
+
+  componentDidUpdate() {
+    if (this.props.isAuth) this.props.fetchRecepies(this.props.token, this.props.userId)
   }
 
   render() {
     return (
       <>
+        {!this.props.isAuth && <Redirect to='/' />}
         <Layout>
           <Route path="/" component={Home} exact />
           <Route path="/auth" component={Auth} />
@@ -49,11 +50,20 @@ export class UnconectedApp extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    fetchRecepies: (token, userId) => { dispatch(actions.fetchRecepies(token, userId)) },
-    onTryAutoSignIn: () => dispatch(actions.onTryAutoSignIn())
+    isAuth: state.auth.token !== null,
+    token: state.auth.token,
+    userId: state.auth.userId
   }
 }
 
-export default connect(null, mapDispatchToProps)(UnconectedApp);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchRecepies: (token, userId) => { dispatch(actions.fetchRecepies(token, userId)) },
+    onTryAutoSignIn: () => dispatch(actions.authCheckState()),
+    logout: () => dispatch(actions.logout())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UnconectedApp);

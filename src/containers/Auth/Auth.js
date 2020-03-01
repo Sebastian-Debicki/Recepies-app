@@ -6,7 +6,7 @@ import * as actions from '../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 import { useAuthState } from './useAuthState';
 
-const Auth = (props) => {
+const Auth = ({ auth, isAuth, error }) => {
   const { controlsState, switchAuthTypeState, changeInputValuesHandler, switchAuthTypeHandler } = useAuthState();
 
   const controlsStateArr = [];
@@ -20,7 +20,7 @@ const Auth = (props) => {
   const formSubmitHandler = (e) => {
     const { email, password } = controlsState.controls
     e.preventDefault();
-    props.auth(email.value, password.value, switchAuthTypeState)
+    auth(email.value, password.value, switchAuthTypeState)
   }
 
   const form = controlsStateArr.map(formEl =>
@@ -35,15 +35,14 @@ const Auth = (props) => {
       name={formEl.config.name}
       pattern="^\S+$"
     />)
-
   return (
     <div className="auth">
-      {props.isAuth && <Redirect to="/recepies-list" />}
+      {isAuth && <Redirect to="/recepies-list" />}
       <div className="auth__box">
         <div className="heading-box u-margin-bottom-small">
           <h2 className="heading-secondary">{switchAuthTypeState ? 'Sign Up' : 'Sign In'}</h2>
         </div>
-        {props.error && <p className="auth__error-message">{props.error.message}</p>}
+        {error && <p className="auth__error-message">{error.message}</p>}
         <form className="auth__form" onSubmit={formSubmitHandler}>
           {form}
           <Button class="btn btn__primary">Submit</Button>

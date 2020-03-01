@@ -1,8 +1,8 @@
 import React from 'react';
 
-const AddRecepieButton = (props) => {
+const AddRecepieButton = ({ open, clicked }) => {
   return (
-    <button className={props.open ? "add-button open" : "add-button"} onClick={props.clicked}>
+    <button className={open ? "add-button open" : "add-button"} onClick={clicked}>
       <div className="add-button__box" >
         +
       </div>

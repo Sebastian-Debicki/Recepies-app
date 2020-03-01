@@ -2,10 +2,10 @@ import React from 'react';
 import LogOutNav from './LogOutNav/LogOutNav';
 import LogInNav from './LogInNav/LogInNav';
 
-const NavigationItems = (props) => {
+const NavigationItems = ({ isAuth, open }) => {
   return (
     <>
-      {props.isAuth ? <LogInNav open={props.open} /> : <LogOutNav />}
+      {isAuth ? <LogInNav open={open} /> : <LogOutNav />}
     </>
   );
 }

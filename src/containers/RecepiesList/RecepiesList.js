@@ -7,7 +7,11 @@ import Search from '../../components/Search/Search';
 import Recepie from './Recepie/Recepie';
 
 class RecepiesList extends Component {
-  state = { optionSortBy: 'Last modification date', optionIncDec: 'Increasing', searchValue: '' }
+  state = {
+    optionSortBy: 'Last modification date',
+    optionIncOrDec: 'Increasing',
+    searchValue: ''
+  }
 
   changeSingleRecepieOptionHandler = (e, recepie) => {
     if (e.target.value === 'delete') this.props.removeRecepieHandler(recepie.id)
@@ -29,12 +33,12 @@ class RecepiesList extends Component {
     this.setState({ optionSortBy: option })
   }
 
-  changeSelectValueIncreasing = (option) => {
-    this.setState({ optionIncDec: option })
+  changeSelectValueIncOrDec = (option) => {
+    this.setState({ optionIncOrDec: option })
   }
 
   render() {
-    const sortedRecepies = sort(this.props.recepies, this.state.optionSortBy, this.state.optionIncDec)
+    const sortedRecepies = sort(this.props.recepies, this.state.optionSortBy, this.state.optionIncOrDec)
     const filteredAndSortedRecepies = sortedRecepies.filter(recepie => recepie.name.toLowerCase().includes(this.state.searchValue.toLocaleLowerCase()))
     let title, recepiesList;
     if (this.props.match.path === '/recepies-list') {
@@ -42,17 +46,14 @@ class RecepiesList extends Component {
       recepiesList = filteredAndSortedRecepies
     };
     if (this.props.match.path === '/favorites') {
-      title = 'FAVORITES';
+      title = 'Favorites';
       recepiesList = filteredAndSortedRecepies.filter(recepie => recepie.favorite);
     };
 
     let content = <Spinner />
 
-    if (!this.props.loading) {
-      content = recepiesList.map(recepie =>
-        <Recepie recepie={recepie} key={recepie.id} changeSingleRecepieOptionHandler={this.changeSingleRecepieOptionHandler} />
-      )
-    }
+    if (!this.props.loading) content = recepiesList.map(recepie =>
+      <Recepie recepie={recepie} key={recepie.id} changeSingleRecepieOptionHandler={this.changeSingleRecepieOptionHandler} />)
 
     return (
       <div className="recepies-list">
@@ -64,7 +65,7 @@ class RecepiesList extends Component {
             searchInputHandler={this.searchInputHandler}
             searchValue={this.state.searchValue}
             changeSelectValueSortBy={this.changeSelectValueSortBy}
-            changeSelectValueIncreasing={this.changeSelectValueIncreasing}
+            changeSelectValueIncOrDec={this.changeSelectValueIncOrDec}
           />
           <ul className="recepies-list__list">
             {content}
@@ -77,6 +78,7 @@ class RecepiesList extends Component {
 
 const mapStateToProps = state => {
   return {
+    token: state.auth.token,
     open: state.open.navOpen,
     recepies: state.recepies.recepiesList,
     loading: state.recepies.loading
@@ -87,6 +89,7 @@ const mapDispatchToProps = dispatch => {
   return {
     switchFavoriteHandler: (recepie) => { dispatch(actions.changeRecepieValues(recepie)) },
     removeRecepieHandler: (id) => { dispatch(actions.removeRecepie(id)) },
+    fetchRecepies: (token, userId) => { dispatch(actions.fetchRecepies(token, userId)) }
   }
 }
 
