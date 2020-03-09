@@ -1,11 +1,13 @@
 .navigation--login {
   width: $nav-width;
   height: 100vh;
-  background-color: $color-primary;
-  background-position: center;
+  background-image: linear-gradient(to bottom, rgba($color-primary, .6), rgba($color-primary, .6)), url(../../../../../assets/imgs/pizza.jpg);
+  background-position: right;
   background-size: cover;
-
+  background-repeat: no-repeat;
   position: fixed;
+  box-shadow: .5rem 0 2rem rgba($color-black, .5);
+
   @include clearfix;
   float: left;
   z-index: 999;

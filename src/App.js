@@ -62,7 +62,6 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchRecepies: (token, userId) => { dispatch(actions.fetchRecepies(token, userId)) },
     onTryAutoSignIn: () => dispatch(actions.authCheckState()),
-    logout: () => dispatch(actions.logout())
   }
 }
 

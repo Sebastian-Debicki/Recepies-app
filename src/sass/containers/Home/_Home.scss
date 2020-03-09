@@ -16,14 +16,14 @@
 
   &__text-box {
     position: absolute;
-    @include centerVaH(45%);
+    top: 45%;
+    transform: translateY(-50%);
     width: 100%;
     text-align: center;
 
     @include respond(tab-land) {
-      @include centerVaH(45%);
-      width: 80%;
       text-align: left;
+      padding-left: 10rem;
     }
   }
 }
