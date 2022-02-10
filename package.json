@@ -45,6 +45,6 @@
     "@testing-library/react-hooks": "^3.2.1",
     "enzyme-adapter-react-16": "^1.15.2",
     "jest-enzyme": "^7.1.2",
-    "node-sass": "^4.13.1"
+    "node-sass": "^7.0.0"
   }
 }
